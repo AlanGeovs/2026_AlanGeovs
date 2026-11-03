@@ -43,7 +43,42 @@ function Sound(){
 function Sports(){
   const [active,setActive]=useState(0);const current=formats[active];
   function formatKey(e:React.KeyboardEvent<HTMLButtonElement>,index:number){let n=index;if(e.key==='ArrowRight')n=(index+1)%formats.length;else if(e.key==='ArrowLeft')n=(index+formats.length-1)%formats.length;else if(e.key==='Home')n=0;else if(e.key==='End')n=formats.length-1;else return;e.preventDefault();setActive(n);document.getElementById(`format-${formats[n].id}`)?.focus()}
-  return <section id="deporte" className="sports-section"><span id="experiencias" className="anchor-alias" aria-hidden="true"/><Shell><div className="section-heading"><div><Label light>02 / Música en movimiento</Label><h2>El esfuerzo es tuyo.<br/><span className="sports-heading-accent">La energía se comparte.</span></h2></div><p>Corro. Entreno. También me mueve la música. De ahí nace esta propuesta para encontrarme con comunidades deportivas y acompañar lo que las hace vibrar.</p></div></Shell><figure className="running-panorama"><img src={asset('running-community.webp')} alt="Visual conceptual de corredores compartiendo una ruta al amanecer" width="1672" height="941" loading="lazy"/><figcaption><span>ENCONTRARNOS EN MOVIMIENTO.</span><small>UNIVERSO VISUAL / IMAGEN CONCEPTUAL</small></figcaption><div className="photo-coordinate" aria-hidden="true">RUN / CONNECT / FEEL</div></figure><Shell><div className="sports-tabs" role="tablist" aria-label="Formatos de colaboración deportiva">{formats.map((f,i)=><button type="button" role="tab" key={f.id} id={`format-${f.id}`} aria-selected={active===i} aria-controls="format-panel" tabIndex={active===i?0:-1} onKeyDown={e=>formatKey(e,i)} onClick={()=>setActive(i)}><small>{f.number}</small>{f.label}<Arrow/></button>)}</div><div id="format-panel" role="tabpanel" aria-labelledby={`format-${current.id}`} tabIndex={0}><AnimatePresence mode="wait" initial={false}><motion.div key={current.id} className="format-panel" initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}} transition={{duration:.25}}><div className="format-title"><span className="format-large-number" aria-hidden="true">{current.number}</span><h3>{current.title.split('\n').map((line,i)=><span key={i}>{line}<br/></span>)}</h3></div><div className="format-description"><p>{current.text}</p><div className="format-genres">{current.tags.map(tag=><span key={tag}>{tag}</span>)}</div><div className="format-timing"><span>{current.time}</span><small>{current.note}</small></div></div></motion.div></AnimatePresence></div><div className="sports-collab-note"><span className="signal-dot"/><p>Busco colaboraciones eventuales en CDMX y alrededores. Abierto a participaciones piloto como voluntario; fecha, montaje y condiciones se acuerdan previamente con producción.</p><a href="#colaboracion">Explorar una colaboración<Arrow/></a></div></Shell></section>
+  return (
+    <section id="deporte" className="sports-section sports-visual">
+      <span id="experiencias" className="anchor-alias" aria-hidden="true"/>
+      <Shell>
+        <div className="section-heading">
+          <div><Label light>02 / Música en movimiento</Label><h2>El esfuerzo es tuyo.<br/><span className="sports-heading-accent">La energía se comparte.</span></h2></div>
+        </div>
+        <div className="sports-tabs" role="tablist" aria-label="Formatos de colaboración deportiva">
+          {formats.map((format,index)=>(
+            <button type="button" role="tab" key={format.id} id={`format-${format.id}`} aria-selected={active===index} aria-controls="format-panel" tabIndex={active===index?0:-1} onKeyDown={event=>formatKey(event,index)} onClick={()=>setActive(index)}>
+              <img src={asset(format.image)} alt="" loading="lazy"/>
+              <span><small>{format.number}</small>{format.label}</span>
+              <Arrow/>
+            </button>
+          ))}
+        </div>
+        <div id="format-panel" className="sports-stage" role="tabpanel" aria-labelledby={`format-${current.id}`} tabIndex={0}>
+          <AnimatePresence initial={false}>
+            <motion.figure key={current.id} className={`sports-scene sports-scene-${current.id}`} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:.35}}>
+              <img src={asset(current.image)} alt={current.alt} loading="lazy"/>
+              <figcaption>
+                <div className="sports-scene-label"><span>{current.number} / {current.label}</span><Wave/></div>
+                <h3>{current.title}</h3>
+                <p>{current.text}</p>
+                <div className="sports-scene-tags">{current.tags.map(tag=><span key={tag}>{tag}</span>)}</div>
+              </figcaption>
+            </motion.figure>
+          </AnimatePresence>
+        </div>
+        <div className="sports-collab-note">
+          <span className="signal-dot"/><p>Sets en vivo · CDMX y alrededores</p>
+          <a href="#colaboracion">Hagamos equipo<Arrow/></a>
+        </div>
+      </Shell>
+    </section>
+  )
 }
 
 type Equipment={name:string,brand:string,category:string,description:string,alt:string,asset?:string,width:number,height:number,product_url:string,image_url:string};

@@ -10,7 +10,7 @@ export const music = [
 ] as const;
 export type MusicItem = (typeof music)[number];
 export const formats = [
-  {id:'running',label:'Running',number:'01',title:'Antes de salir.\nDespués de llegar.',text:'Recibir a la comunidad, acompañar el calentamiento y celebrar el esfuerzo de cruzar la meta. Una progresión musical que respeta los tiempos de la carrera.',tags:['House','Melodic House','Trance'],time:'Bloques propuestos de 30–45 min',note:'Coordinación con salidas, locución y premiación.'},
-  {id:'fitness',label:'Fitness + calistenia',number:'02',title:'El impulso\nse comparte.',text:'Groove y melodías para entrenamientos, encuentros de calistenia y activaciones deportivas. La intensidad y los cortes se planean con quienes conducen la actividad.',tags:['Tech House','Minimal','Melodic Techno'],time:'Bloques propuestos de 30–60 min',note:'Selección y energía según la dinámica del encuentro.'},
-  {id:'partido',label:'Previas deportivas',number:'03',title:'La emoción\nempieza antes.',text:'Una propuesta para recepción, fan zone o previa de partido. Bloques musicales pensados con producción para acompañar a la afición y el guion del evento.',tags:['House','Tech House','Progresión'],time:'Formato y duración por acordar',note:'Medio tiempo sujeto a ventanas y autorización de producción.'},
+  {id:'running',label:'Running',number:'01',image:'running-community.webp',alt:'Corredores en una ruta urbana al amanecer',title:'Que la meta se escuche.',text:'Del primer paso al último sprint.',tags:['House','Melodic House','Trance']},
+  {id:'fitness',label:'Fitness + calistenia',number:'02',image:'fitness-community.webp',alt:'Atletas de calistenia entrenando en un parque',title:'Una repetición más.',text:'Groove para calistenia, fuerza y comunidad.',tags:['Tech House','Minimal','Melodic Techno']},
+  {id:'partido',label:'Previas deportivas',number:'03',image:'stadium-community.webp',alt:'Visual conceptual de una afición reunida ante una cabina DJ',title:'El partido empieza afuera.',text:'La afición se enciende antes del silbatazo.',tags:['House','Tech House','Progresión']},
 ] as const;
