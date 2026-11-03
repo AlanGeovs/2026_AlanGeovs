@@ -43,7 +43,7 @@ try{
   console.log('PASS: navigation opens and Escape restores keyboard focus.');
   const equipment=document.querySelector('.gear-card');equipment.focus();await click(equipment);
   assert.equal(document.querySelector('dialog').open,true);
-  assert.match(document.querySelector('.dialog-caption').textContent,/XDJ-AZ/);
+  assert.match(document.querySelector('.dialog-caption').textContent,/DDJ-FLX4/);
   await click(document.querySelector('.dialog-close'));
   assert.equal(document.querySelector('dialog').open,false);
   assert.equal(document.activeElement,equipment);

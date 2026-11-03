@@ -1,7 +1,19 @@
 {
   "updated": "2026-11-02",
-  "purpose": "Official product imagery used as visual references; no ownership or sponsorship claim. Event equipment remains agreed with production in the rider.",
+  "purpose": "Official product imagery for AlanGeovs’s own controller and other models used for practice. Event setup is agreed with production.",
   "models": [
+    {
+      "name": "DDJ-FLX4",
+      "brand": "Pioneer DJ",
+      "category": "Controlador / 2 canales",
+      "description": "Mi controlador para mezclar con Rekordbox en MacBook Pro.",
+      "alt": "Controlador Pioneer DJ DDJ-FLX4 negro con dos jog wheels y pads",
+      "width": 1792,
+      "height": 1316,
+      "product_url": "https://www.pioneerdj.com/en/product/dj-controllers/ddj-flx4/",
+      "image_url": "https://www.pioneerdj.com/product-images/556/d067d24e-28a0-42d1-ac50-5cf2392f755e/ddj-flx4_1.png",
+      "owned": true
+    },
     {
       "name": "XDJ-AZ",
       "brand": "AlphaTheta",
