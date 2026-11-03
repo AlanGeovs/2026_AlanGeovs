@@ -1,0 +1,5 @@
+import type {CSSProperties} from 'react';
+export function Arrow({className='',diagonal=true}:{className?:string,diagonal?:boolean}) { return <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal?'M5 19 19 5M5 5h14v14':'M4 12h16m-6-6 6 6-6 6'} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg> }
+export function Play({className=''}:{className?:string}) { return <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 5 12 7-12 7z"/></svg> }
+export function Close(){return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.5"/></svg>}
+export function Wave({className=''}:{className?:string}) { return <span className={`audio-wave ${className}`} aria-hidden="true">{Array.from({length:28},(_,i)=><i key={i} style={{'--height':`${18+Math.abs(Math.sin(i*1.7))*76}%`,'--delay':`${-i*.09}s`} as CSSProperties}/>)}</span> }

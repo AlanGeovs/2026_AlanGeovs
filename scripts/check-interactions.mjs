@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import {JSDOM} from 'jsdom';
+const dom=new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>',{url:'https://alangeovs.test/',pretendToBeVisual:true});
+const {window}=dom;
+for(const key of ['window','document','HTMLElement','HTMLDialogElement','HTMLCanvasElement','SVGElement','Element','Node','Event','MouseEvent','KeyboardEvent','CustomEvent','MutationObserver'])Object.defineProperty(globalThis,key,{value:key==='window'?window:window[key],configurable:true});
+Object.defineProperty(globalThis,'navigator',{value:window.navigator,configurable:true});
+globalThis.getComputedStyle=window.getComputedStyle.bind(window);
+globalThis.requestAnimationFrame=window.requestAnimationFrame.bind(window);
+globalThis.cancelAnimationFrame=window.cancelAnimationFrame.bind(window);
+window.matchMedia=()=>({matches:true,addEventListener(){},removeEventListener(){},addListener(){},removeListener(){}});
+globalThis.matchMedia=window.matchMedia;
+globalThis.IntersectionObserver=window.IntersectionObserver=class{observe(){}unobserve(){}disconnect(){}};
+globalThis.ResizeObserver=window.ResizeObserver=class{observe(){}unobserve(){}disconnect(){}};
+window.HTMLCanvasElement.prototype.getContext=()=>null;
+window.HTMLDialogElement.prototype.showModal=function(){this.open=true;this.querySelector('button')?.focus()};
+window.HTMLDialogElement.prototype.close=function(){this.open=false};
+const {createRoot}=await import('react-dom/client');
+const {createElement,act}=await import('react');
+const {App}=await import('../.build-ssr/prerender.js');
+globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+const root=createRoot(document.getElementById('root'));
+const wait=()=>new Promise(resolve=>setTimeout(resolve,40));
+async function click(element){assert.ok(element,'Required control exists');await act(async()=>{element.click();await wait()})}
+async function settle(){await act(async()=>{await new Promise(resolve=>setTimeout(resolve,350))})}
+try{
+  await act(async()=>{root.render(createElement(App));await wait()});
+  assert.equal(document.querySelector('.controller-stage').classList.contains('scene-fallback'),true,'Unavailable WebGL keeps the official photo visible');
+  await click(document.getElementById('tab-tracks'));await settle();
+  assert.equal(document.getElementById('tab-tracks').getAttribute('aria-selected'),'true');
+  assert.equal(document.querySelectorAll('.music-row').length,5,'Production selector exposes five recordings');
+  await click(document.querySelectorAll('.music-row')[2]);
+  assert.ok(document.querySelector('.soundcloud-embed iframe').getAttribute('src').includes(encodeURIComponent('pulso-abierto-house-mix')),'Selecting a production targets its verified SoundCloud recording');
+  console.log('PASS: catalogue switching and correct recording selection.');
+  await click(document.getElementById('format-fitness'));await settle();
+  assert.equal(document.getElementById('format-panel').getAttribute('aria-labelledby'),'format-fitness');
+  assert.match(document.getElementById('format-panel').textContent,/calistenia/);
+  console.log('PASS: sporting format selection updates the displayed proposal.');
+  await click(document.querySelector('.menu-toggle'));
+  assert.equal(document.getElementById('mobile-nav').hidden,false);
+  await act(async()=>{window.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape'}));await wait()});
+  assert.equal(document.getElementById('mobile-nav').hidden,true);
+  assert.equal(document.activeElement,document.querySelector('.menu-toggle'));
+  console.log('PASS: navigation opens and Escape restores keyboard focus.');
+  const equipment=document.querySelector('.gear-card');equipment.focus();await click(equipment);
+  assert.equal(document.querySelector('dialog').open,true);
+  assert.match(document.querySelector('.dialog-caption').textContent,/XDJ-AZ/);
+  await click(document.querySelector('.dialog-close'));
+  assert.equal(document.querySelector('dialog').open,false);
+  assert.equal(document.activeElement,equipment);
+  console.log('PASS: equipment detail opens, closes and restores focus.');
+  assert.ok(document.querySelector('#contacto'),'Existing contact anchors retained');
+}finally{await act(async()=>root.unmount());dom.window.close()}

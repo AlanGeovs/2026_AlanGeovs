@@ -1,0 +1,52 @@
+{
+  "updated": "2026-11-02",
+  "purpose": "Official product imagery used as visual references; no ownership or sponsorship claim. Event equipment remains agreed with production in the rider.",
+  "models": [
+    {
+      "name": "XDJ-AZ",
+      "brand": "AlphaTheta",
+      "category": "All-in-one / 4 canales",
+      "description": "Sistema DJ todo en uno de cuatro canales.",
+      "alt": "AlphaTheta XDJ-AZ negro: sistema DJ profesional con dos jog wheels, pantalla y mezclador de cuatro canales",
+      "asset": "dist/assets/xdj-az.webp",
+      "width": 1600,
+      "height": 986,
+      "product_url": "https://alphatheta.com/en/product/all-in-one-dj-system/xdj-az/black/",
+      "image_url": "https://assets.alphatheta.com/wp-content/uploads/2024/09/XDJ-AZ_CGI_Angle_3300x2034-scaled.webp"
+    },
+    {
+      "name": "XDJ-RX3",
+      "brand": "Pioneer DJ",
+      "category": "All-in-one / 2 canales",
+      "description": "Sistema DJ todo en uno de dos canales.",
+      "alt": "Pioneer DJ XDJ-RX3 negro: sistema DJ con dos jog wheels, pantalla elevada y pads de colores",
+      "asset": "dist/assets/xdj-rx3.webp",
+      "width": 1600,
+      "height": 1175,
+      "product_url": "https://www.pioneerdj.com/es/product/all-in-one-dj-systems/xdj-rx3/",
+      "image_url": "https://www.pioneerdj.com/product-images/1022/808bfb43-0301-49fb-a220-80ddb5aacffc/xdj-rx3_1.png"
+    },
+    {
+      "name": "CDJ-3000X",
+      "brand": "AlphaTheta",
+      "category": "Reproductor profesional",
+      "description": "Reproductor DJ para una cabina modular.",
+      "alt": "AlphaTheta CDJ-3000X negro: reproductor DJ profesional visto en ángulo",
+      "width": 1800,
+      "height": 1800,
+      "product_url": "https://alphatheta.com/en/product/player/cdj-3000x/black/",
+      "image_url": "https://assets.alphatheta.com/wp-content/uploads/2025/09/CDJ-3000X_angle-scaled.webp"
+    },
+    {
+      "name": "DJM-A9",
+      "brand": "Pioneer DJ",
+      "category": "Mezclador / 4 canales",
+      "description": "Mezclador DJ profesional de cuatro canales.",
+      "alt": "Pioneer DJ DJM-A9 negro: mezcladora profesional de cuatro canales con ecualización y efectos",
+      "width": 1200,
+      "height": 1200,
+      "product_url": "https://www.pioneerdj.com/es/product/dj-mixers/djm-a9/",
+      "image_url": "https://www.pioneerdj.com/product-images/403/ce00a4f3-1f0f-4157-b65f-c05de5c68dc1/djm-a9_1.png"
+    }
+  ]
+}

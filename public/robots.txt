@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alangeovs-sport.alangeovs.chatgpt.site/sitemap.xml
